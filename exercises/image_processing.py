@@ -22,9 +22,15 @@ def image_processing_pipeline(image_path):
     # 请在此处编写代码
     # 提示：
     # 1. 使用 cv2.imread() 读取图像。
+    img = cv2.imread(image_path)
     # 2. 检查图像是否成功读取（img is None?）。
+    if img is None:
+        return None
     # 3. 使用 cv2.cvtColor() 将图像转为灰度图 (cv2.COLOR_BGR2GRAY)。
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     # 4. 使用 cv2.GaussianBlur() 进行高斯滤波。
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     # 5. 使用 cv2.Canny() 进行边缘检测。
+    edges = cv2.Canny(blurred, 100, 200)
     # 6. 使用 try...except 包裹代码以处理可能的异常。
-    pass 
+    return edges
